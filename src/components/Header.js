@@ -1,9 +1,13 @@
 import styles from "./header.module.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import apiFetcher from "../helpers/apiFetcher";
+import { NewsContext } from "../contexts/news.context";
 
 export default function Header() {
   const [inputValue, setInputValue] = useState(0);
+
+  const { setNews } = useContext(NewsContext);
+
   return (
     <div className={styles.header}>
       <div className={styles["input-container"]}>
@@ -19,8 +23,8 @@ export default function Header() {
         ></input>
 
         <button
-          onClick={() => {
-            apiFetcher(inputValue);
+          onClick={async () => {
+            setNews(await apiFetcher(inputValue));
           }}
           className={styles["submit-button"]}
         >
