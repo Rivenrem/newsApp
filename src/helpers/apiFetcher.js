@@ -1,9 +1,9 @@
 async function apiFetcher(keyWord) {
   try {
-    let response = await fetch(
-      `https://newsapi.org/v2/everything?q=${keyWord}&from=2022-10-28&sortBy=popularity&apiKey=e30be37faba149bab93e668c8f451943`
+    const response = await fetch(
+      `https://newsapi.org/v2/everything?q=${keyWord}&from=2022-10-28&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY}`
     );
-    let result = await response.json();
+    const result = await response.json();
     return result;
   } catch (error) {
     console.log(error);
