@@ -6,7 +6,7 @@
   height: 5rem;
 
   &__input {
-    width: 70%;
+    width: 50%;
     height: 40%;
     border-radius: 1rem;
     background-color: #b48895;
@@ -16,9 +16,8 @@
     margin-right: 1rem;
 
     &:focus {
-      border: 1px solid #22003f;
       outline: none;
-      width: 80%;
+      width: 60%;
     }
 
     &::placeholder {
@@ -26,19 +25,24 @@
     }
   }
 
-  &__submitbutton {
-    background-color: #000000;
-    color: #b48895;
-    border: none;
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 2rem;
-    box-shadow: 3px 3px 0px 1px #00000042;
+  &__spinner {
+    position: absolute;
+    right: 10%;
+    height: 1rem;
+    width: 1rem;
+    border: 2px solid #000000;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spinner 1s linear infinite;
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
   }
 
-  &__submitbutton:active {
-    background-color: #ffffff;
-    color: #000000;
-    box-shadow: none;
+  to {
+    transform: rotate(360deg);
   }
 }
