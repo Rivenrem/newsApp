@@ -5,9 +5,7 @@ export default function Articles({ article }) {
 
   return (
     <div className={styles["article"]}>
-      <div className={styles["article__description"]}>
-        {article.description}
-      </div>
+      <p className={styles["article__description"]}>{article.description}</p>
       <div className={styles["article__content"]}>
         <img
           className={styles["article__img"]}
@@ -16,10 +14,8 @@ export default function Articles({ article }) {
         ></img>
       </div>
       <div className={styles["article__footer"]}>
-        <div className={styles["article__footer-author"]}>{article.author}</div>
-        <div className={styles["article__footer-date"]}>
-          {"Published: " + data}
-        </div>
+        <p className={styles["article__footer-author"]}>{article.author}</p>
+        <p className={styles["article__footer-date"]}>{"Published: " + data}</p>
       </div>
     </div>
   );
