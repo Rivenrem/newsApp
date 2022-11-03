@@ -1,9 +1,12 @@
-function apiFetcher(keyWord) {
-  fetch(
-    `https://newsapi.org/v2/everything?q=${keyWord}&from=2022-10-28&sortBy=popularity&apiKey=e30be37faba149bab93e668c8f451943`
-  )
-    .then((response) => response.json())
-    .then((result) => console.log(result))
-    .catch((err) => console.error(err));
+async function apiFetcher(keyWord) {
+  try {
+    const response = await fetch(
+      `https://newsapi.org/v2/everything?q=${keyWord}&from=2022-10-28&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY}`
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 }
 export default apiFetcher;

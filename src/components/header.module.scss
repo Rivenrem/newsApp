@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b48895;
+  height: 5rem;
+
+  &__input {
+    width: 70%;
+    height: 40%;
+    border-radius: 1rem;
+    background-color: #b48895;
+    border: 1px solid #000000;
+    transition: all 1s;
+    padding-left: 1rem;
+    margin-right: 1rem;
+
+    &:focus {
+      border: 1px solid #22003f;
+      outline: none;
+      width: 80%;
+    }
+
+    &::placeholder {
+      color: #000000;
+    }
+  }
+
+  &__submitbutton {
+    background-color: #000000;
+    color: #b48895;
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 3px 3px 0px 1px #00000042;
+  }
+
+  &__submitbutton:active {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: none;
+  }
+}
