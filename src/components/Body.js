@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import styles from "./body.module.scss";
 import { NewsContext } from "contexts/news.context";
+import styles from "./body.module.scss";
 import Articles from "./Article";
 import sadCat from "images/crying-cat.png";
 

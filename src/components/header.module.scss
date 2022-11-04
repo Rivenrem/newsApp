@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #b48895;
+  background-color: var(--main-pink);
   height: 5rem;
 
   &__input {
     width: 50%;
     height: 40%;
     border-radius: 1rem;
-    background-color: #b48895;
-    border: 1px solid #000000;
+    background-color: var(--main-pink);
+    border: 1px solid var(--black);
     transition: all 1s;
     padding-left: 1rem;
     margin-right: 1rem;
@@ -21,7 +21,7 @@
     }
 
     &::placeholder {
-      color: #000000;
+      color: var(--black);
     }
   }
 }
