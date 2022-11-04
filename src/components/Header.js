@@ -1,9 +1,9 @@
-import styles from "./header.module.scss";
 import { useState, useContext } from "react";
-import apiFetcher from "helpers/apiFetcher";
 import { NewsContext } from "contexts/news.context";
 import { useDebouncedCallback } from "use-debounce";
+import styles from "./header.module.scss";
 import Spinner from "./Spinner";
+import apiFetcher from "helpers/apiFetcher";
 
 const debounceDelay = 500;
 
