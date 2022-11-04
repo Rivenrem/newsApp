@@ -1,7 +1,7 @@
 import styles from "./header.module.scss";
 import { useState, useContext } from "react";
-import apiFetcher from "../helpers/apiFetcher";
-import { NewsContext } from "../contexts/news.context";
+import apiFetcher from "helpers/apiFetcher";
+import { NewsContext } from "contexts/news.context";
 import { useDebouncedCallback } from "use-debounce";
 import Spinner from "./Spinner";
 

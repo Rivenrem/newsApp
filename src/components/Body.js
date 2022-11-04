@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import styles from "./body.module.scss";
-import { NewsContext } from "../contexts/news.context";
+import { NewsContext } from "contexts/news.context";
 import Articles from "./Article";
-import sadCat from "../img/crying-cat.png";
+import sadCat from "images/crying-cat.png";
 
 export default function Body() {
   const { news } = useContext(NewsContext);
