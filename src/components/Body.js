@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { NewsContext } from "contexts/news.context";
 import styles from "./body.module.scss";
-import Articles from "./Article";
+import Article from "./Article";
 import Pagination from "./Pagination";
 import sadCat from "images/crying-cat.png";
 import apiFetcher from "helpers/apiFetcher";
@@ -29,7 +29,7 @@ export default function Body() {
   return (
     <div className={styles["body"]}>
       {news.articles.map((article, index) => (
-        <Articles key={index} article={article} />
+        <Article key={index} article={article} />
       ))}
       <Pagination
         numberOfPages={numberOfPages}
