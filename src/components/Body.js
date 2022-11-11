@@ -28,9 +28,11 @@ export default function Body() {
 
   return (
     <div className={styles["body"]}>
-      {news.articles.map((article, index) => (
-        <Article key={index} article={article} />
-      ))}
+      <div className={styles["body__articles"]}>
+        {news.articles.map((article, index) => (
+          <Article key={index} article={article} />
+        ))}
+      </div>
       <Pagination
         numberOfPages={numberOfPages}
         currentPage={currentPage}
