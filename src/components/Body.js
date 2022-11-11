@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NewsContext } from "contexts/news.context";
 import styles from "./body.module.scss";
 import Articles from "./Article";
+import Pagination from "./Pagination";
 import sadCat from "images/crying-cat.png";
+import apiFetcher from "helpers/apiFetcher";
 
 export default function Body() {
-  const { news } = useContext(NewsContext);
+  const { news, newsInput, setNews } = useContext(NewsContext);
+  const [isLoading, setisLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [articlesPerPage] = useState(6);
 
   if (!news.articles) {
     return;
@@ -19,13 +24,24 @@ export default function Body() {
     );
   }
 
-  const shortNews = news.articles.slice(0, 4);
+  const numberOfPages = Math.ceil(news.totalResults / articlesPerPage);
 
   return (
     <div className={styles["body"]}>
-      {shortNews.map((article, index) => (
+      {news.articles.map((article, index) => (
         <Articles key={index} article={article} />
       ))}
+      <Pagination
+        numberOfPages={numberOfPages}
+        currentPage={currentPage}
+        setCurrentPage={async (page) => {
+          setisLoading(true);
+          setCurrentPage(page);
+          setNews(await apiFetcher(newsInput, page));
+          setisLoading(false);
+        }}
+        isLoading={isLoading}
+      />
     </div>
   );
 }

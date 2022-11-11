@@ -1,7 +1,7 @@
-async function apiFetcher(keyWord) {
+async function apiFetcher(keyWord, pageNumber = 1) {
   try {
     const response = await fetch(
-      `https://newsapi.org/v2/everything?q=${keyWord}&from=2022-10-28&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY}`
+      `https://newsapi.org/v2/everything?q=${keyWord}&pageSize=6&page=${pageNumber}&from=2022-10-28&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY}`
     );
     const result = await response.json();
     return result;

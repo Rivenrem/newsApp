@@ -1,0 +1,52 @@
+.pagination {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 100%;
+  background-color: var(--background-pink);
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item,
+  &__current-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 4px;
+    background-color: var(--background-pink);
+    border: 1px solid var(--main-pink);
+    cursor: pointer;
+  }
+
+  &__current-item {
+    background-color: var(--main-pink);
+    box-shadow: 4px 4px 5px 1px var(--shadow-gray);
+  }
+
+  &__previous,
+  &__next {
+    padding: 0.4rem;
+    background-color: var(--main-pink);
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
+  @media (min-width: 800px) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    &__item,
+    &__current-item {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

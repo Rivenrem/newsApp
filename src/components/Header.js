@@ -2,19 +2,20 @@ import { useState, useContext } from "react";
 import { NewsContext } from "contexts/news.context";
 import { useDebouncedCallback } from "use-debounce";
 import styles from "./header.module.scss";
-import Spinner from "./Spinner";
+import HeaderSpinner from "./HeaderSpinner";
 import apiFetcher from "helpers/apiFetcher";
 
 const debounceDelay = 500;
 
 export default function Header() {
   const [isLoading, setisLoading] = useState(false);
-  const { setNews } = useContext(NewsContext);
+  const { setNews, setNewsInput } = useContext(NewsContext);
 
   async function inputHandler(event) {
     if (!event.target.value) return;
 
     setisLoading(true);
+    setNewsInput(event.target.value);
     setNews(await apiFetcher(event.target.value));
     setisLoading(false);
   }
@@ -29,7 +30,7 @@ export default function Header() {
         autoComplete="off"
         placeholder="Search..."
       ></input>
-      {isLoading && <Spinner />}
+      {isLoading && <HeaderSpinner />}
     </div>
   );
 }
