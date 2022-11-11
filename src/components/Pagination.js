@@ -12,12 +12,15 @@ export default function Pagination({
   const NextPageNumber = currentPage + 1;
 
   for (let i = 1; i <= numberOfPages; i++) {
-    if (i === numberOfPages || i === 1) {
-      pageNumbers.push(i);
-      continue;
-    }
-
-    if (i === currentPage || i === PreviousPageNumber || i === NextPageNumber) {
+    if (
+      [
+        numberOfPages,
+        1,
+        currentPage,
+        PreviousPageNumber,
+        NextPageNumber,
+      ].includes(i)
+    ) {
       pageNumbers.push(i);
       continue;
     }
