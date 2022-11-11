@@ -1,5 +1,5 @@
 import styles from "./pagination.module.scss";
-import PaginationSpinner from "./PaginationSpinner";
+import Spinner from "./Spinner";
 
 export default function Pagination({
   numberOfPages,
@@ -67,11 +67,7 @@ export default function Pagination({
               }
             }}
           >
-            {isLoading && number === currentPage ? (
-              <PaginationSpinner />
-            ) : (
-              number
-            )}
+            {isLoading && number === currentPage ? <Spinner /> : number}
           </li>
         ))}
         <li
