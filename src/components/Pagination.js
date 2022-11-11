@@ -57,7 +57,7 @@ export default function Pagination({
           <li
             className={
               number === currentPage
-                ? styles["pagination__current-item"]
+                ? styles["pagination__item--current"]
                 : styles["pagination__item"]
             }
             key={index}

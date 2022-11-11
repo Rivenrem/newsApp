@@ -14,7 +14,7 @@
   }
 
   &__item,
-  &__current-item {
+  &__item--current {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,7 +26,7 @@
     cursor: pointer;
   }
 
-  &__current-item {
+  &__item--current {
     background-color: var(--main-pink);
     box-shadow: 4px 4px 5px 1px var(--shadow-gray);
   }
@@ -44,7 +44,7 @@
     grid-column-end: 3;
 
     &__item,
-    &__current-item {
+    &__item--current {
       width: 2rem;
       height: 2rem;
     }
