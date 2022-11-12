@@ -1,9 +1,16 @@
 .body {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2rem;
-  padding: 2rem;
   background-color: var(--background-pink);
+
+  &__articles {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1.5rem;
+    gap: 1.5rem;
+
+    @media (min-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
   &__error {
     display: flex;
@@ -13,8 +20,5 @@
     height: 100%;
     font-size: xx-large;
     color: var(--black);
-  }
-  @media (min-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
