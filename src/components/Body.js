@@ -7,10 +7,10 @@ import sadCat from "images/crying-cat.png";
 import apiFetcher from "helpers/apiFetcher";
 
 export default function Body() {
-  const { news, newsInput, setNews } = useContext(NewsContext);
+  const { news, newsInput, articlesPerPage, sortBy, setNews } =
+    useContext(NewsContext);
   const [isLoading, setisLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [articlesPerPage] = useState(6);
 
   if (!news.articles) {
     return;
@@ -39,7 +39,7 @@ export default function Body() {
         setCurrentPage={async (page) => {
           setisLoading(true);
           setCurrentPage(page);
-          setNews(await apiFetcher(newsInput, page));
+          setNews(await apiFetcher(newsInput, page, articlesPerPage, sortBy));
           setisLoading(false);
         }}
         isLoading={isLoading}
