@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
   background-color: var(--main-pink);
-  height: auto;
 
   &__input {
     width: 80%;
@@ -12,7 +11,7 @@
     border-radius: 1rem;
     background-color: var(--main-pink);
     border: 1px solid var(--black);
-    transition: all 1s;
+    transition: width 1s;
     padding-left: 1rem;
     margin-top: 1rem;
 
