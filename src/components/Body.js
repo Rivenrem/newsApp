@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { NewsContext } from "contexts/news.context";
 import styles from "./body.module.scss";
@@ -30,7 +31,13 @@ export default function Body() {
     <div className={styles["body"]}>
       <div className={styles["body__articles"]}>
         {news.articles.map((article, index) => (
-          <Article key={index} article={article} />
+          <Link
+            className={styles["body__articles-link"]}
+            key={index}
+            to={`/article/${index}`}
+          >
+            <Article article={article} />
+          </Link>
         ))}
       </div>
       <Pagination

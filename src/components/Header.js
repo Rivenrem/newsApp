@@ -40,7 +40,7 @@ export default function Header() {
       ></input>
 
       <div className={styles["header__articles-selectors"]}>
-        <label for="select-articles-per-page">Articles per page</label>
+        <label htmlFor="select-articles-per-page">Articles per page</label>
         <select
           className={styles["header__select"]}
           id="select-articles-per-page"
@@ -51,14 +51,14 @@ export default function Header() {
             setisLoading(false);
           }}
         >
-          <option value="6" selected>
+          <option value="6" defaultValue>
             6
           </option>
           <option value="10">10</option>
           <option value="20">20</option>
         </select>
 
-        <label for="select-sort">Sort by</label>
+        <label htmlFor="select-sort">Sort by</label>
         <select
           className={styles["header__select"]}
           id="select-sort"
@@ -77,7 +77,7 @@ export default function Header() {
           }}
         >
           <option value="relevancy">relevancy</option>
-          <option value="popularity" selected>
+          <option value="popularity" defaultValue>
             popularity
           </option>
           <option value="publishedAt">published at</option>

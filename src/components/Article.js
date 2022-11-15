@@ -5,7 +5,7 @@ export default function Articles({ article }) {
 
   return (
     <div className={styles["article"]}>
-      <p className={styles["article__description"]}>{article.description}</p>
+      <h2 className={styles["article__title"]}>{article.title}</h2>
       <div className={styles["article__content"]}>
         <img
           className={styles["article__img"]}
