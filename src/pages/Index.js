@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { NewsContext } from "contexts/news.context";
-import styles from "./body.module.scss";
-import Article from "./Article";
-import Pagination from "./Pagination";
+import styles from "./index.module.scss";
+import Article from "../components/Article";
+import Pagination from "../components/Pagination";
 import sadCat from "images/crying-cat.png";
 import apiFetcher from "helpers/apiFetcher";
 
