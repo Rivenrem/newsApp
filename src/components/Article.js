@@ -1,7 +1,7 @@
 import styles from "./article.module.scss";
 
 export default function Articles({ article }) {
-  const data = article.publishedAt.slice(0, 10);
+  const date = article.publishedAt.slice(0, 10);
 
   return (
     <div className={styles["article"]}>
@@ -15,7 +15,7 @@ export default function Articles({ article }) {
       </div>
       <div className={styles["article__footer"]}>
         <p className={styles["article__footer-author"]}>{article.author}</p>
-        <p className={styles["article__footer-date"]}>{"Published: " + data}</p>
+        <p className={styles["article__footer-date"]}>{"Published: " + date}</p>
       </div>
     </div>
   );
