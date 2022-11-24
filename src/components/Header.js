@@ -27,7 +27,6 @@ export default function Header() {
     if (searchParams.has("search")) {
       setNewsInput(searchParams.get("search"));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
