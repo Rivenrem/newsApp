@@ -1,14 +1,10 @@
-import { useState, useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { NewsContext } from "contexts/news.context";
-import { useDebouncedCallback } from "use-debounce";
 import styles from "./header.module.scss";
-import HeaderSpinner from "./HeaderSpinner";
 import apiFetcher from "helpers/apiFetcher";
 
-const debounceDelay = 500;
-
 export default function Header() {
-  const [isLoading, setisLoading] = useState(false);
   const {
     setNews,
     setNewsInput,
@@ -19,24 +15,31 @@ export default function Header() {
     setSortBy,
   } = useContext(NewsContext);
 
-  async function inputHandler(event) {
-    if (!event.target.value) return;
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-    setisLoading(true);
+  async function inputHandler(event) {
     setNewsInput(event.target.value);
-    setNews(await apiFetcher(event.target.value, 1, articlesPerPage));
-    setisLoading(false);
+    navigate(`../page/1`);
   }
+
+  useEffect(() => {
+    if (searchParams.has("search")) {
+      setNewsInput(searchParams.get("search"));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.header}>
       <input
-        onChange={useDebouncedCallback(inputHandler, debounceDelay)}
+        onChange={inputHandler}
         className={styles["header__input"]}
         type="textarea"
         name="input"
         autoComplete="off"
         placeholder="Search..."
+        value={newsInput}
       ></input>
 
       <div className={styles["header__articles-selectors"]}>
@@ -45,10 +48,8 @@ export default function Header() {
           className={styles["header__select"]}
           id="select-articles-per-page"
           onChange={async (event) => {
-            setisLoading(true);
             setArticlesPerPage(event.target.value);
             setNews(await apiFetcher(newsInput, 1, event.target.value, sortBy));
-            setisLoading(false);
           }}
         >
           <option value="6" defaultValue>
@@ -63,7 +64,6 @@ export default function Header() {
           className={styles["header__select"]}
           id="select-sort"
           onChange={async (event) => {
-            setisLoading(true);
             setSortBy(event.target.value);
             setNews(
               await apiFetcher(
@@ -73,18 +73,14 @@ export default function Header() {
                 event.target.value
               )
             );
-            setisLoading(false);
           }}
+          defaultValue="popularity"
         >
           <option value="relevancy">relevancy</option>
-          <option value="popularity" defaultValue>
-            popularity
-          </option>
+          <option value="popularity">popularity</option>
           <option value="publishedAt">published at</option>
         </select>
       </div>
-
-      {isLoading && <HeaderSpinner />}
     </div>
   );
 }
