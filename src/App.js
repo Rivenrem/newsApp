@@ -14,7 +14,10 @@ export default function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path={`/article/:id`} element={<SingleArticle />} />
+            <Route
+              path={`/page/:number/article/:id`}
+              element={<SingleArticle />}
+            />
             <Route path={`/page/:number`} element={<Page />} />
           </Routes>
         </NewsProvider>

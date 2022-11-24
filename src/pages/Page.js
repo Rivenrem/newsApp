@@ -79,7 +79,7 @@ export default function Body() {
           <Link
             className={styles["body__articles-link"]}
             key={index}
-            to={`/article/${index}`}
+            to={`/page/${number}/article/${index}`}
           >
             <Article article={article} />
           </Link>
