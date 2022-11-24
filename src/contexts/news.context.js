@@ -7,7 +7,6 @@ function NewsProvider({ children }) {
   const [newsInput, setNewsInput] = useState("");
   const [sortBy, setSortBy] = useState("popularity");
   const [articlesPerPage, setArticlesPerPage] = useState(6);
-  const [search, setSearch] = useState({});
   return (
     <NewsContext.Provider
       value={{
@@ -15,12 +14,10 @@ function NewsProvider({ children }) {
         newsInput,
         sortBy,
         articlesPerPage,
-        search,
         setNews,
         setNewsInput,
         setSortBy,
         setArticlesPerPage,
-        setSearch,
       }}
     >
       {children}
