@@ -89,7 +89,7 @@ export default function Body() {
       <Pagination
         numberOfPages={numberOfPages}
         currentPage={+number}
-        setCurrentPage={async (page) => {
+        setCurrentPage={(page) => {
           navigate(`../page/${page}`);
         }}
         isLoading={isLoading}
