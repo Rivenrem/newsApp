@@ -1,3 +1,5 @@
+@import "../sass/mixins.scss";
+
 .pagination {
   width: 100%;
   background-color: var(--background-pink);
@@ -23,7 +25,7 @@
     border: 1px solid var(--main-pink);
     cursor: pointer;
 
-    @media (min-width: 800px) {
+    @include tablet {
       width: 2rem;
       height: 2rem;
     }
