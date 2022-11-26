@@ -1,16 +1,40 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useSearchParams } from "react-router-dom";
 import styles from "./singleArticle.module.scss";
 import { NewsContext } from "contexts/news.context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import apiFetcher from "../helpers/apiFetcher";
+import BodySpinner from "components/BodySpinner";
 
 export default function SingleArticle() {
-  const { news } = useContext(NewsContext);
-  const { id } = useParams();
+  const { news, setNews } = useContext(NewsContext);
+  const { number, id } = useParams();
+  const [searchParams] = useSearchParams();
+  const [isLoading, setisLoading] = useState();
+
+  useEffect(() => {
+    if (news.articles || !searchParams) return;
+
+    (async function () {
+      setisLoading(true);
+      setNews(
+        await apiFetcher(
+          searchParams.get("search"),
+          number,
+          searchParams.get("articlesPerPage"),
+          searchParams.get("sortBy")
+        )
+      );
+      setisLoading(false);
+    })();
+  }, []);
+
+  if (!news.articles) return;
+
   const date = news.articles[id].publishedAt.slice(0, 10);
 
   return (
     <div className={styles["article"]}>
-      <Link to={"/"} className={styles["article__back"]}>
+      <Link to={-1} className={styles["article__back"]}>
         Back
       </Link>
       <div className={styles["article__container"]}>
@@ -37,6 +61,7 @@ export default function SingleArticle() {
           </p>
         </div>
       </div>
+      {isLoading && <BodySpinner />}
     </div>
   );
 }
