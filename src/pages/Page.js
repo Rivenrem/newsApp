@@ -5,7 +5,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import { useDebouncedCallback } from "use-debounce";
 import { NewsContext } from "contexts/news.context";
 import styles from "./page.module.scss";
 import Article from "../components/Article";
@@ -14,53 +13,40 @@ import sadCat from "images/crying-cat.png";
 import apiFetcher from "helpers/apiFetcher";
 import BodySpinner from "components/BodySpinner";
 
-const debounceDellay = 400;
-
 export default function Body() {
-  const { news, newsInput, articlesPerPage, sortBy, setNews } =
-    useContext(NewsContext);
+  const { news, setNews } = useContext(NewsContext);
   const [isLoading, setisLoading] = useState(false);
   const { number } = useParams();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const debouncedNewsSetter = useDebouncedCallback(async function () {
-    setisLoading(true);
-    setNews(
-      await apiFetcher(
-        searchParams.get("search"),
-        number,
-        searchParams.get("articlesPerPage"),
-        searchParams.get("sortBy")
-      )
-    );
-    setisLoading(false);
-  }, debounceDellay);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    setSearchParams({
-      search: `${newsInput}`,
-      sortBy: `${sortBy}`,
-      articlesPerPage: `${articlesPerPage}`,
-    });
+    if (
+      !searchParams.has("search") ||
+      !searchParams.has("articlesPerPage") ||
+      !searchParams.has("sortBy")
+    ) {
+      return;
+    }
 
-    if (!searchParams.get("search")) return;
-
-    debouncedNewsSetter();
-  }, [
-    searchParams,
-    debouncedNewsSetter,
-    setSearchParams,
-    newsInput,
-    articlesPerPage,
-    number,
-    sortBy,
-    setNews,
-  ]);
+    (async function () {
+      setisLoading(true);
+      setNews(
+        await apiFetcher(
+          searchParams.get("search"),
+          number,
+          searchParams.get("articlesPerPage"),
+          searchParams.get("sortBy")
+        )
+      );
+      setisLoading(false);
+    })();
+  }, [setNews, searchParams, number]);
 
   if (!news.articles) {
     return;
   }
+
   if (!news.articles.length) {
     return (
       <div className={styles["body__error"]}>
@@ -70,7 +56,9 @@ export default function Body() {
     );
   }
 
-  const numberOfPages = Math.ceil(news.totalResults / articlesPerPage);
+  const numberOfPages = Math.ceil(
+    news.totalResults / searchParams.get("articlesPerPage")
+  );
 
   return (
     <div className={styles["body"]}>
@@ -79,7 +67,11 @@ export default function Body() {
           <Link
             className={styles["body__articles-link"]}
             key={index}
-            to={`/page/${number}/article/${index}`}
+            to={`/page/${number}/article/${index}?search=${searchParams.get(
+              "search"
+            )}&sortBy=${searchParams.get(
+              "sortBy"
+            )}&articlesPerPage=${searchParams.get("articlesPerPage")}`}
           >
             <Article article={article} />
           </Link>
@@ -90,7 +82,14 @@ export default function Body() {
         numberOfPages={numberOfPages}
         currentPage={+number}
         setCurrentPage={(page) => {
-          navigate(`../page/${page}`);
+          navigate({
+            pathname: `/page/${page}`,
+            search: `?search=${searchParams.get(
+              "search"
+            )}&sortBy=${searchParams.get(
+              "sortBy"
+            )}&articlesPerPage=${searchParams.get("articlesPerPage")}`,
+          });
         }}
         isLoading={isLoading}
       />
