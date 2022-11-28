@@ -12,7 +12,13 @@ export default function SingleArticle() {
   const [isLoading, setisLoading] = useState();
 
   useEffect(() => {
-    if (news.articles || !searchParams.has("search")) return;
+    if (
+      news.articles ||
+      !searchParams.has("search") ||
+      !searchParams.has("articlesPerPage") ||
+      !searchParams.has("sortBy")
+    )
+      return;
 
     (async function () {
       setisLoading(true);
