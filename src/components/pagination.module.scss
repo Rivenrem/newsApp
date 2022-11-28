@@ -1,6 +1,9 @@
+@use "../sass/mixins.scss" as *;
+
 .pagination {
   width: 100%;
   background-color: var(--background-pink);
+  margin: 1rem;
 
   &__list {
     display: flex;
@@ -22,7 +25,7 @@
     border: 1px solid var(--main-pink);
     cursor: pointer;
 
-    @media (min-width: 800px) {
+    @include from-table {
       width: 2rem;
       height: 2rem;
     }
@@ -40,5 +43,9 @@
     background-color: var(--main-pink);
     border-radius: 1rem;
     cursor: pointer;
+  }
+  &__link {
+    text-decoration: none;
+    color: var(--black);
   }
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./pagination.module.scss";
 import Spinner from "./Spinner";
 
@@ -67,7 +68,16 @@ export default function Pagination({
               }
             }}
           >
-            {isLoading && number === currentPage ? <Spinner /> : number}
+            {isLoading && number === currentPage ? (
+              <Spinner />
+            ) : (
+              <Link
+                className={styles["pagination__link"]}
+                to={`/page/${number}`}
+              >
+                {number}
+              </Link>
+            )}
           </li>
         ))}
         <li

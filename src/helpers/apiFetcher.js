@@ -15,7 +15,7 @@ async function apiFetcher(
 
     return result;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 export default apiFetcher;

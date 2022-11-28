@@ -1,12 +1,17 @@
+@use "../sass/mixins.scss" as *;
+
 .header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
   background-color: var(--main-pink);
 
   &__input {
     width: 80%;
+    max-width: var(--max-content-width);
     height: 2rem;
     border-radius: 1rem;
     background-color: var(--main-pink);
@@ -23,7 +28,7 @@
       color: var(--black);
     }
 
-    @media (min-width: 800px) {
+    @include from-table {
       width: 50%;
 
       &:focus {
@@ -40,7 +45,7 @@
     align-items: center;
     width: 100%;
 
-    @media (min-width: 800px) {
+    @include from-table {
       flex-direction: row;
     }
   }

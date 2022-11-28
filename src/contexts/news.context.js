@@ -4,21 +4,15 @@ const NewsContext = createContext(null);
 
 function NewsProvider({ children }) {
   const [news, setNews] = useState({});
-  const [newsInput, setNewsInput] = useState("");
-  const [sortBy, setSortBy] = useState("popularity");
-  const [articlesPerPage, setArticlesPerPage] = useState(6);
+  const [previousParams, setPreviousParams] = useState({});
 
   return (
     <NewsContext.Provider
       value={{
         news,
-        newsInput,
-        sortBy,
-        articlesPerPage,
+        previousParams,
         setNews,
-        setNewsInput,
-        setSortBy,
-        setArticlesPerPage,
+        setPreviousParams,
       }}
     >
       {children}

@@ -1,90 +1,91 @@
-import { useState, useContext } from "react";
-import { NewsContext } from "contexts/news.context";
-import { useDebouncedCallback } from "use-debounce";
+import { useEffect, useState, useCallback } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
-import HeaderSpinner from "./HeaderSpinner";
-import apiFetcher from "helpers/apiFetcher";
+import { useDebouncedCallback } from "use-debounce";
 
-const debounceDelay = 500;
+const debounceDellay = 400;
 
 export default function Header() {
-  const [isLoading, setisLoading] = useState(false);
-  const {
-    setNews,
-    setNewsInput,
-    newsInput,
-    articlesPerPage,
-    setArticlesPerPage,
-    sortBy,
-    setSortBy,
-  } = useContext(NewsContext);
+  const navigate = useCallback(useNavigate(), []);
+  const [searchParams] = useSearchParams();
+  const [newsInput, setNewsInput] = useState("");
+  const [sortBy, setSortBy] = useState("popularity");
+  const [articlesPerPage, setArticlesPerPage] = useState(6);
 
-  async function inputHandler(event) {
-    if (!event.target.value) return;
+  const debouncedInputHandler = useDebouncedCallback(function inputHandler(
+    event
+  ) {
+    navigate({
+      pathname: "/page/1",
+      search: `?search=${event.target.value}&sortBy=${sortBy}&articlesPerPage=${articlesPerPage}`,
+    });
+  },
+  debounceDellay);
 
-    setisLoading(true);
-    setNewsInput(event.target.value);
-    setNews(await apiFetcher(event.target.value, 1, articlesPerPage));
-    setisLoading(false);
-  }
+  useEffect(() => {
+    if (searchParams.has("search")) {
+      setNewsInput(searchParams.get("search"));
+    }
+    if (searchParams.has("sortBy")) {
+      setSortBy(searchParams.get("sortBy"));
+    }
+    if (searchParams.has("articlesPerPage")) {
+      setArticlesPerPage(searchParams.get("articlesPerPage"));
+    }
+  }, []);
 
   return (
     <div className={styles.header}>
       <input
-        onChange={useDebouncedCallback(inputHandler, debounceDelay)}
+        onChange={(event) => {
+          setNewsInput(event.target.value);
+          debouncedInputHandler(event);
+        }}
         className={styles["header__input"]}
         type="textarea"
         name="input"
         autoComplete="off"
         placeholder="Search..."
+        value={newsInput}
       ></input>
 
       <div className={styles["header__articles-selectors"]}>
-        <label for="select-articles-per-page">Articles per page</label>
+        <label htmlFor="select-articles-per-page">Articles per page</label>
         <select
           className={styles["header__select"]}
           id="select-articles-per-page"
-          onChange={async (event) => {
-            setisLoading(true);
+          onChange={(event) => {
             setArticlesPerPage(event.target.value);
-            setNews(await apiFetcher(newsInput, 1, event.target.value, sortBy));
-            setisLoading(false);
+            navigate({
+              pathname: "/page/1",
+              search: `?search=${newsInput}&sortBy=${sortBy}&articlesPerPage=${event.target.value}`,
+            });
           }}
+          value={articlesPerPage}
         >
-          <option value="6" selected>
-            6
-          </option>
+          <option value="6">6</option>
           <option value="10">10</option>
           <option value="20">20</option>
         </select>
 
-        <label for="select-sort">Sort by</label>
+        <label htmlFor="select-sort">Sort by</label>
         <select
           className={styles["header__select"]}
           id="select-sort"
-          onChange={async (event) => {
-            setisLoading(true);
+          onChange={(event) => {
             setSortBy(event.target.value);
-            setNews(
-              await apiFetcher(
-                newsInput,
-                1,
-                articlesPerPage,
-                event.target.value
-              )
-            );
-            setisLoading(false);
+            navigate({
+              pathname: "/page/1",
+              search: `?search=${newsInput}&sortBy=${event.target.value}&articlesPerPage=${articlesPerPage}`,
+            });
           }}
+          value={sortBy}
         >
           <option value="relevancy">relevancy</option>
-          <option value="popularity" selected>
-            popularity
-          </option>
+          <option value="popularity">popularity</option>
           <option value="publishedAt">published at</option>
         </select>
       </div>
-
-      {isLoading && <HeaderSpinner />}
     </div>
   );
 }
