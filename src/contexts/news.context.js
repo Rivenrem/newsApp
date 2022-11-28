@@ -4,15 +4,15 @@ const NewsContext = createContext(null);
 
 function NewsProvider({ children }) {
   const [news, setNews] = useState({});
-  const [params, setParams] = useState({});
+  const [previousParams, setPreviousParams] = useState({});
 
   return (
     <NewsContext.Provider
       value={{
         news,
-        params,
+        previousParams,
         setNews,
-        setParams,
+        setPreviousParams,
       }}
     >
       {children}
