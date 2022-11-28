@@ -1,4 +1,4 @@
-@import "../sass/mixins.scss";
+@use "../sass/mixins.scss" as *;
 
 .header {
   display: flex;
@@ -28,7 +28,7 @@
       color: var(--black);
     }
 
-    @include tablet {
+    @include from-table {
       width: 50%;
 
       &:focus {
@@ -45,7 +45,7 @@
     align-items: center;
     width: 100%;
 
-    @include tablet {
+    @include from-table {
       flex-direction: row;
     }
   }

@@ -1,4 +1,4 @@
-@import "../sass/mixins.scss";
+@use "../sass/mixins.scss" as *;
 
 .pagination {
   width: 100%;
@@ -25,7 +25,7 @@
     border: 1px solid var(--main-pink);
     cursor: pointer;
 
-    @include tablet {
+    @include from-table {
       width: 2rem;
       height: 2rem;
     }

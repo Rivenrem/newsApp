@@ -1,4 +1,4 @@
-@import "../sass/mixins.scss";
+@use "../sass/mixins.scss" as *;
 
 .body {
   display: flex;
@@ -17,7 +17,7 @@
       text-decoration: none;
       color: var(--black);
     }
-    @include tablet {
+    @include from-table {
       grid-template-columns: repeat(2, 1fr);
     }
   }

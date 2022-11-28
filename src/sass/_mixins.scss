@@ -1,4 +1,4 @@
-@mixin tablet {
+@mixin from-table {
   @media (min-width: 800px) {
     @content;
   }
