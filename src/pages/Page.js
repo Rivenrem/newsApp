@@ -14,7 +14,7 @@ import apiFetcher from "helpers/apiFetcher";
 import BodySpinner from "components/BodySpinner";
 
 export default function Body() {
-  const { news, setNews } = useContext(NewsContext);
+  const { news, setNews, params, setParams } = useContext(NewsContext);
   const [isLoading, setisLoading] = useState(false);
   const { number } = useParams();
   const navigate = useNavigate();
@@ -29,8 +29,23 @@ export default function Body() {
       return;
     }
 
+    if (
+      number === params["number"] &&
+      searchParams.get("search") === params["search"] &&
+      searchParams.get("articlesPerPage") === params["articlesPerPage"] &&
+      searchParams.get("sortBy") === params["sortBy"]
+    )
+      return;
+
     (async function () {
       setisLoading(true);
+      setParams({
+        number: number,
+        search: searchParams.get("search"),
+        articlesPerPage: searchParams.get("articlesPerPage"),
+        sortBy: searchParams.get("sortBy"),
+      });
+
       setNews(
         await apiFetcher(
           searchParams.get("search"),
@@ -41,7 +56,7 @@ export default function Body() {
       );
       setisLoading(false);
     })();
-  }, [setNews, searchParams, number]);
+  }, [setNews, searchParams, number, setParams, params]);
 
   if (!news.articles) {
     return;
