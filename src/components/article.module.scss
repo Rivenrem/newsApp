@@ -2,12 +2,34 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
   box-sizing: border-box;
   height: 100%;
   padding: 1rem;
   border-radius: 2rem;
   background-color: var(--main-pink);
   box-shadow: 1.25rem 1.25rem 0.6rem 0.3rem var(--shadow-gray);
+
+  &__link {
+    text-decoration: none;
+    color: var(--black);
+  }
+
+  &__favorite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 1px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__favorite-image {
+    width: 2rem;
+    height: 2rem;
+  }
 
   &__title {
     padding: 0.5rem;
@@ -25,6 +47,7 @@
   &__footer {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
 
   &__footer-author,

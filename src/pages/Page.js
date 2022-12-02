@@ -1,9 +1,4 @@
-import {
-  Link,
-  useParams,
-  useSearchParams,
-  useNavigate,
-} from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { NewsContext } from "contexts/news.context";
 import styles from "./page.module.scss";
@@ -81,17 +76,12 @@ export default function Body() {
     <div className={styles["body"]}>
       <div className={styles["body__articles"]}>
         {news.articles.map((article, index) => (
-          <Link
-            className={styles["body__articles-link"]}
+          <Article
             key={index}
-            to={`/page/${number}/article/${index}?search=${searchParams.get(
-              "search"
-            )}&sortBy=${searchParams.get(
-              "sortBy"
-            )}&articlesPerPage=${searchParams.get("articlesPerPage")}`}
-          >
-            <Article article={article} />
-          </Link>
+            article={article}
+            index={index}
+            number={number}
+          />
         ))}
       </div>
       {isLoading && <BodySpinner />}

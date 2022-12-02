@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Page from "./pages/Page";
 import SingleArticle from "./pages/SingleArticle";
 import Index from "pages/Index";
+import Favorites from "./pages/Favorites";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
               element={<SingleArticle />}
             />
             <Route path={`/page/:number`} element={<Page />} />
+            <Route path={`/favorites`} element={<Favorites />} />
           </Routes>
         </NewsProvider>
       </BrowserRouter>
