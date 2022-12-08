@@ -79,8 +79,8 @@ export default function Body() {
           <Article
             key={index}
             article={article}
-            index={index}
-            number={number}
+            articleIndex={index}
+            pageNumber={number}
           />
         ))}
       </div>

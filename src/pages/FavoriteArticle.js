@@ -2,11 +2,13 @@ import styles from "./favoritesArticle.module.scss";
 import { useState } from "react";
 import trashCan from "images/garbage-bin-trash-can-svgrepo-com.svg";
 
-export default function FavoritesArticle({ article }, index) {
+export default function FavoriteArticle({
+  article,
+  index,
+  setCurrentFavorites,
+}) {
   const [showMore, setShowMore] = useState("false");
-  const [remove, setRemove] = useState(false);
 
-  if (!localStorage.getItem(article.title)) return;
   return (
     <div className={styles["article"]} key={index}>
       <img
@@ -14,8 +16,7 @@ export default function FavoritesArticle({ article }, index) {
         className={styles["article-trashCan"]}
         alt="trashCan"
         onClick={() => {
-          localStorage.removeItem(article.title);
-          setRemove(!remove);
+          setCurrentFavorites(index);
         }}
       ></img>
       <div className={styles["article__mainPart"]}>

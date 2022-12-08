@@ -4,10 +4,10 @@ import starImage from "images/star-svgrepo-com.svg";
 import inactiveStarImage from "../images/star-inactive.com.svg";
 import { useState } from "react";
 
-export default function Articles({ article, index, number }) {
+export default function Articles({ article, articleIndex, pageNumber }) {
   const date = article.publishedAt.slice(0, 10);
   const [searchParams] = useSearchParams();
-  const [favorites, setFavorites] = useState(
+  const [buttonImage, setButtonImage] = useState(
     localStorage.getItem(article.title) ? starImage : inactiveStarImage
   );
 
@@ -26,22 +26,22 @@ export default function Articles({ article, index, number }) {
                 content: article.content,
               })
             );
-            setFavorites(starImage);
+            setButtonImage(starImage);
           } else {
             localStorage.removeItem(article.title);
-            setFavorites(inactiveStarImage);
+            setButtonImage(inactiveStarImage);
           }
         }}
       >
         <img
-          src={favorites}
+          src={buttonImage}
           alt="star"
           className={styles["article__favorite-image"]}
         ></img>
       </button>
       <Link
         className={styles["article__link"]}
-        to={`/page/${number}/article/${index}?search=${searchParams.get(
+        to={`/page/${pageNumber}/article/${articleIndex}?search=${searchParams.get(
           "search"
         )}&sortBy=${searchParams.get(
           "sortBy"

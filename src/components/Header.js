@@ -103,7 +103,7 @@ export default function Header() {
           alt="star"
           className={styles["header__favorites-image"]}
         ></img>
-        <label htmlFor="star">Favorites</label>
+        <p className={styles["header__favorites-paragraph"]}>Favorites</p>
       </button>
     </div>
   );
