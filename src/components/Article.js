@@ -5,31 +5,47 @@ import inactiveStarImage from "../images/star-inactive.com.svg";
 import { useState } from "react";
 
 export default function Articles({ article, articleIndex, pageNumber }) {
+  let currentIndexInStorage;
   const date = article.publishedAt.slice(0, 10);
   const [searchParams] = useSearchParams();
   const [buttonImage, setButtonImage] = useState(
-    localStorage.getItem(article.title) ? starImage : inactiveStarImage
+    JSON.parse(localStorage.getItem("favorites")).some(isAlreadyInStorage)
+      ? starImage
+      : inactiveStarImage
   );
+
+  function isAlreadyInStorage(element, index) {
+    currentIndexInStorage = index;
+    return element.title === article.title;
+  }
 
   return (
     <div className={styles["article"]}>
       <button
         className={styles["article__favorite-button"]}
         onClick={() => {
-          if (!localStorage.getItem(article.title)) {
-            localStorage.setItem(
-              article.title,
-              JSON.stringify({
-                title: article.title,
-                urlToImage: article.urlToImage,
-                author: article.author,
-                content: article.content,
-              })
-            );
-            setButtonImage(starImage);
-          } else {
-            localStorage.removeItem(article.title);
+          if (!localStorage.getItem("favorites")) {
+            const favorites = [];
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+          }
+
+          const favoritesStorage = JSON.parse(
+            localStorage.getItem("favorites")
+          );
+
+          if (favoritesStorage.some(isAlreadyInStorage)) {
+            favoritesStorage.splice(currentIndexInStorage, 1);
+            localStorage.setItem("favorites", JSON.stringify(favoritesStorage));
             setButtonImage(inactiveStarImage);
+          } else {
+            favoritesStorage.push({
+              title: article.title,
+              urlToImage: article.urlToImage,
+              author: article.author,
+              content: article.content,
+            });
+            localStorage.setItem("favorites", JSON.stringify(favoritesStorage));
+            setButtonImage(starImage);
           }
         }}
       >

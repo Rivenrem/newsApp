@@ -90,7 +90,7 @@ export default function Header() {
       <button
         className={styles["header__favorites"]}
         onClick={() => {
-          if (localStorage.length) {
+          if (JSON.parse(localStorage.getItem("favorites")).length) {
             navigate({
               pathname: "/favorites",
             });

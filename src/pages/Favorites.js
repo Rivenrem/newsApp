@@ -6,13 +6,7 @@ export default function Favorites() {
   const [currentFavorites, setCurrentFavorites] = useState([]);
 
   useEffect(() => {
-    const array = [];
-    for (let key in localStorage) {
-      if (!localStorage.hasOwnProperty(key)) {
-        continue;
-      }
-      array.push(JSON.parse(localStorage[key]));
-    }
+    const array = JSON.parse(localStorage.getItem("favorites"));
     setCurrentFavorites(array);
   }, []);
 
