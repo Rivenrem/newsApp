@@ -8,10 +8,10 @@ export default function Articles({ article, articleIndex, pageNumber }) {
   const date = article.publishedAt.slice(0, 10);
   const [searchParams] = useSearchParams();
   const [buttonImage, setButtonImage] = useState(
-    JSON.parse(localStorage.getItem("favorites")) &&
-      JSON.parse(localStorage.getItem("favorites")).findIndex(
+    localStorage.getItem("favorites") &&
+      JSON.parse(localStorage.getItem("favorites")).some(
         (element) => element.title === article.title
-      ) !== -1
+      )
       ? starImage
       : inactiveStarImage
   );
@@ -29,17 +29,12 @@ export default function Articles({ article, articleIndex, pageNumber }) {
             localStorage.getItem("favorites")
           );
 
-          if (
-            favoritesStorage.findIndex(
-              (element) => element.title === article.title
-            ) !== -1
-          ) {
-            favoritesStorage.splice(
-              favoritesStorage.findIndex(
-                (element) => element.title === article.title
-              ),
-              1
-            );
+          const findIndex = favoritesStorage.findIndex(
+            (element) => element.title === article.title
+          );
+
+          if (findIndex !== -1) {
+            favoritesStorage.splice(findIndex, 1);
             setButtonImage(inactiveStarImage);
           } else {
             favoritesStorage.push({
