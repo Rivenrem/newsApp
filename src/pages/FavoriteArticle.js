@@ -37,7 +37,7 @@ export default function FavoriteArticle({
       </div>
       <div
         className={styles["article__footer"]}
-        style={showMore ? { display: "block" } : { display: "none" }}
+        style={{ "--favorite-article-display": showMore ? "block" : "none" }}
         id="favoritesfooter"
       >
         <p className={styles["article__footer-content"]}>{article.content}</p>

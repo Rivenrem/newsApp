@@ -10,6 +10,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  height: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -18,13 +22,5 @@ code {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-}
-
-#root {
-  height: 100%;
-}
-
-.rootDiv {
   height: 100%;
 }

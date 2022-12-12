@@ -38,6 +38,8 @@
   }
 
   &__footer {
+    display: var(--favorite-article-display, "none");
+
     &-author {
       font-size: large;
       font-weight: 600;
