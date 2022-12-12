@@ -13,10 +13,6 @@
     gap: 1.5rem;
     max-width: var(--max-content-width);
     padding: 1.5rem;
-    &-link {
-      text-decoration: none;
-      color: var(--black);
-    }
     @include from-table {
       grid-template-columns: repeat(2, 1fr);
     }

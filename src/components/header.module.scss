@@ -61,4 +61,35 @@
       outline: none;
     }
   }
+
+  &__favorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 5rem;
+    right: 1.5rem;
+    border: 1px solid var(--black);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    background-color: var(--background-pink);
+    cursor: pointer;
+
+    @include from-table {
+      top: 1rem;
+    }
+
+    &:active {
+      background-color: var(--main-pink);
+    }
+
+    &-image {
+      height: 2rem;
+      width: 2rem;
+    }
+
+    &-paragraph {
+      margin: 0;
+    }
+  }
 }

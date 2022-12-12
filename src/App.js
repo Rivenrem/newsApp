@@ -1,14 +1,15 @@
-import "./app.module.scss";
+import styles from "./app.module.scss";
 import { NewsProvider } from "./contexts/news.context";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Page from "./pages/Page";
 import SingleArticle from "./pages/SingleArticle";
 import Index from "pages/Index";
+import Favorites from "./pages/Favorites";
 
 export default function App() {
   return (
-    <div>
+    <div className={styles.container}>
       <BrowserRouter>
         <NewsProvider>
           <Header />
@@ -19,6 +20,7 @@ export default function App() {
               element={<SingleArticle />}
             />
             <Route path={`/page/:number`} element={<Page />} />
+            <Route path={`/favorites`} element={<Favorites />} />
           </Routes>
         </NewsProvider>
       </BrowserRouter>

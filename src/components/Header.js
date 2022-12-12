@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
 import { useDebouncedCallback } from "use-debounce";
+import starImage from "images/star-svgrepo-com.svg";
 
 const debounceDellay = 400;
 
@@ -86,6 +87,22 @@ export default function Header() {
           <option value="publishedAt">published at</option>
         </select>
       </div>
+      <button
+        className={styles["header__favorites"]}
+        onClick={() => {
+          navigate({
+            pathname: "/favorites",
+          });
+        }}
+      >
+        <img
+          src={starImage}
+          id="star"
+          alt="star"
+          className={styles["header__favorites-image"]}
+        ></img>
+        <p className={styles["header__favorites-paragraph"]}>Favorites</p>
+      </button>
     </div>
   );
 }
