@@ -31,15 +31,15 @@ export default function Favorites() {
         ))}
       </div>
     );
-  } else
-    return (
-      <div className={styles.noFavorites}>
-        <h2 className={styles["noFavorites__paragraph"]}>
-          There are no favorites, add some to see them !
-        </h2>
-        <Link to={-1} className={styles["noFavorites__back"]}>
-          Back to the articles
-        </Link>
-      </div>
-    );
+  }
+  return (
+    <div className={styles.noFavorites}>
+      <h2 className={styles["noFavorites__paragraph"]}>
+        There are no favorites, add some to see them !
+      </h2>
+      <Link to={-1} className={styles["noFavorites__back"]}>
+        Back to the articles
+      </Link>
+    </div>
+  );
 }

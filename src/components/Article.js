@@ -29,12 +29,12 @@ export default function Articles({ article, articleIndex, pageNumber }) {
             localStorage.getItem("favorites")
           );
 
-          const findIndex = favoritesStorage.findIndex(
+          const favoriteArticleIndex = favoritesStorage.findIndex(
             (element) => element.title === article.title
           );
 
-          if (findIndex !== -1) {
-            favoritesStorage.splice(findIndex, 1);
+          if (favoriteArticleIndex !== -1) {
+            favoritesStorage.splice(favoriteArticleIndex, 1);
             setButtonImage(inactiveStarImage);
           } else {
             favoritesStorage.push({
