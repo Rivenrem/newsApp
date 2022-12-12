@@ -7,7 +7,7 @@ export default function FavoriteArticle({
   index,
   setCurrentFavorites,
 }) {
-  const [showMore, setShowMore] = useState("false");
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div className={styles["article"]} key={index}>
@@ -37,7 +37,7 @@ export default function FavoriteArticle({
       </div>
       <div
         className={styles["article__footer"]}
-        style={showMore ? { display: "none" } : { display: "block" }}
+        style={showMore ? { display: "block" } : { display: "none" }}
         id="favoritesfooter"
       >
         <p className={styles["article__footer-content"]}>{article.content}</p>

@@ -5,19 +5,16 @@ import inactiveStarImage from "../images/star-inactive.com.svg";
 import { useState } from "react";
 
 export default function Articles({ article, articleIndex, pageNumber }) {
-  let currentIndexInStorage;
   const date = article.publishedAt.slice(0, 10);
   const [searchParams] = useSearchParams();
   const [buttonImage, setButtonImage] = useState(
-    JSON.parse(localStorage.getItem("favorites")).some(isAlreadyInStorage)
+    JSON.parse(localStorage.getItem("favorites")) &&
+      JSON.parse(localStorage.getItem("favorites")).findIndex(
+        (element) => element.title === article.title
+      ) !== -1
       ? starImage
       : inactiveStarImage
   );
-
-  function isAlreadyInStorage(element, index) {
-    currentIndexInStorage = index;
-    return element.title === article.title;
-  }
 
   return (
     <div className={styles["article"]}>
@@ -25,17 +22,24 @@ export default function Articles({ article, articleIndex, pageNumber }) {
         className={styles["article__favorite-button"]}
         onClick={() => {
           if (!localStorage.getItem("favorites")) {
-            const favorites = [];
-            localStorage.setItem("favorites", JSON.stringify(favorites));
+            localStorage.setItem("favorites", "[]");
           }
 
           const favoritesStorage = JSON.parse(
             localStorage.getItem("favorites")
           );
 
-          if (favoritesStorage.some(isAlreadyInStorage)) {
-            favoritesStorage.splice(currentIndexInStorage, 1);
-            localStorage.setItem("favorites", JSON.stringify(favoritesStorage));
+          if (
+            favoritesStorage.findIndex(
+              (element) => element.title === article.title
+            ) !== -1
+          ) {
+            favoritesStorage.splice(
+              favoritesStorage.findIndex(
+                (element) => element.title === article.title
+              ),
+              1
+            );
             setButtonImage(inactiveStarImage);
           } else {
             favoritesStorage.push({
@@ -44,9 +48,9 @@ export default function Articles({ article, articleIndex, pageNumber }) {
               author: article.author,
               content: article.content,
             });
-            localStorage.setItem("favorites", JSON.stringify(favoritesStorage));
             setButtonImage(starImage);
           }
+          localStorage.setItem("favorites", JSON.stringify(favoritesStorage));
         }}
       >
         <img
