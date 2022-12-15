@@ -1,0 +1,13 @@
+.select {
+  width: auto;
+  text-align: center;
+  background-color: var(--main-pink);
+  border: 1px solid var(--black);
+  border-radius: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  color: var(--black);
+  &:focus {
+    outline: none;
+  }
+}

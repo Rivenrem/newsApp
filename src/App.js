@@ -6,13 +6,19 @@ import Page from "./pages/Page";
 import SingleArticle from "./pages/SingleArticle";
 import Index from "pages/Index";
 import Favorites from "./pages/Favorites";
+import { useState } from "react";
 
 export default function App() {
+  const [lightTheme, setLightTheme] = useState(true);
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      color-scheme={lightTheme ? "light" : "dark"}
+    >
       <BrowserRouter>
         <NewsProvider>
-          <Header />
+          <Header lightTheme={lightTheme} setLightTheme={setLightTheme} />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route
