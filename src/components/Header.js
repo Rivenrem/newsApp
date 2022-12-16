@@ -15,7 +15,7 @@ export default function Header({ lightTheme, setLightTheme }) {
   const [sortBy, setSortBy] = useState("popularity");
   const [articlesPerPage, setArticlesPerPage] = useState(6);
 
-  const navigateInArticlesPerPageSelector = function (event) {
+  const onChangeArticlesPerPage = function (event) {
     setArticlesPerPage(event.target.value);
     navigate({
       pathname: "/page/1",
@@ -23,7 +23,7 @@ export default function Header({ lightTheme, setLightTheme }) {
     });
   };
 
-  const navigateInSortBySelector = function (event) {
+  const onChangeSortBy = function (event) {
     setSortBy(event.target.value);
     navigate({
       pathname: "/page/1",
@@ -76,14 +76,14 @@ export default function Header({ lightTheme, setLightTheme }) {
         <div className={styles["header__articles-selectors"]}>
           <Selector
             labelText={"Articles per page"}
-            navigate={navigateInArticlesPerPageSelector}
+            navigate={onChangeArticlesPerPage}
             value={articlesPerPage}
             arrayOfValues={[6, 10, 20]}
           />
 
           <Selector
             labelText={"Sort by"}
-            navigate={navigateInSortBySelector}
+            navigate={onChangeSortBy}
             value={sortBy}
             arrayOfValues={["relevancy", "popularity", "published at"]}
           />
