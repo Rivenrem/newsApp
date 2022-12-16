@@ -6,21 +6,27 @@ import Page from "./pages/Page";
 import SingleArticle from "./pages/SingleArticle";
 import Index from "pages/Index";
 import Favorites from "./pages/Favorites";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-  const [defaultValue, toggle] = useState(
-    window.matchMedia("(prefers-color-scheme: light)").matches
+  const [lightTheme, setLightTheme] = useState(
+    localStorage.getItem("lightTheme")
+      ? JSON.parse(localStorage.getItem("lightTheme"))
+      : window.matchMedia("(prefers-color-scheme: light)").matches
   );
+
+  useEffect(() => {
+    localStorage.setItem("lightTheme", JSON.stringify(lightTheme));
+  }, [lightTheme]);
 
   return (
     <div
       className={styles.container}
-      color-scheme={defaultValue ? "light" : "dark"}
+      color-scheme={lightTheme ? "light" : "dark"}
     >
       <BrowserRouter>
         <NewsProvider>
-          <Header defaultValue={defaultValue} toggle={toggle} />
+          <Header lightTheme={lightTheme} setLightTheme={setLightTheme} />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route

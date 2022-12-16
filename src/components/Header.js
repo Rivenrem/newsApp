@@ -8,7 +8,7 @@ import Selector from "./Selector";
 
 const debounceDellay = 400;
 
-export default function Header({ defaultValue, toggle }) {
+export default function Header({ lightTheme, setLightTheme }) {
   const navigate = useCallback(useNavigate(), []);
   const [searchParams] = useSearchParams();
   const [newsInput, setNewsInput] = useState("");
@@ -55,8 +55,13 @@ export default function Header({ defaultValue, toggle }) {
 
   return (
     <div className={styles.header}>
-      <div className={styles["header__themeToggle"]}>
-        <ThemeToggle defaultValue={defaultValue} toggle={toggle} />
+      <div className={styles["header__themesetLightTheme"]}>
+        <ThemeToggle
+          defaultValue={lightTheme}
+          toggle={(value) => {
+            setLightTheme(value);
+          }}
+        />
       </div>
 
       <div className={styles["header__inputs"]}>
@@ -77,14 +82,14 @@ export default function Header({ defaultValue, toggle }) {
           <Selector
             labelText={"Articles per page"}
             onChange={onChangeArticlesPerPage}
-            defaultValue={articlesPerPage}
+            lightTheme={articlesPerPage}
             values={[6, 10, 20]}
           />
 
           <Selector
             labelText={"Sort by"}
             onChange={onChangeSortBy}
-            defaultValue={sortBy}
+            lightTheme={sortBy}
             values={["relevancy", "popularity", "published at"]}
           />
         </div>
