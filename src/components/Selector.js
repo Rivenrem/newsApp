@@ -2,9 +2,9 @@ import styles from "./selector.module.scss";
 
 export default function Selector({
   labelText,
-  navigate,
-  value,
-  arrayOfValues,
+  onChange,
+  defaultValue,
+  values,
 }) {
   return (
     <>
@@ -12,11 +12,11 @@ export default function Selector({
       <select
         className={styles.select}
         onChange={(event) => {
-          navigate(event);
+          onChange(event);
         }}
-        value={value}
+        value={defaultValue}
       >
-        {arrayOfValues.map((value, key) => (
+        {values.map((value, key) => (
           <option key={key} value={value}>
             {value}
           </option>

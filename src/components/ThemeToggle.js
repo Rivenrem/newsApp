@@ -1,6 +1,8 @@
+import { useState } from "react";
 import styles from "./themeToggle.module.scss";
 
-export default function ThemeToggle({ lightTheme, setLightTheme }) {
+export default function ThemeToggle({ defaultValue, toggle }) {
+  const [toggleValue, setToggleValue] = useState(defaultValue);
   return (
     <div className={styles["toggle"]}>
       <input
@@ -8,13 +10,14 @@ export default function ThemeToggle({ lightTheme, setLightTheme }) {
         className={styles["toggle__checkbox"]}
         id="checkbox"
         onClick={() => {
-          setLightTheme(!lightTheme);
+          setToggleValue(!toggleValue);
+          toggle(toggleValue);
         }}
       ></input>
       <label htmlFor="checkbox" className={styles["toggle__label"]}>
         <div
           className={
-            lightTheme
+            defaultValue
               ? styles["toggle__ball"]
               : styles["toggle__ball"] + " " + styles["toggle__ball--dark"]
           }

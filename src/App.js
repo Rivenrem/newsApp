@@ -9,18 +9,18 @@ import Favorites from "./pages/Favorites";
 import { useState } from "react";
 
 export default function App() {
-  const [lightTheme, setLightTheme] = useState(
+  const [defaultValue, toggle] = useState(
     window.matchMedia("(prefers-color-scheme: light)").matches
   );
 
   return (
     <div
       className={styles.container}
-      color-scheme={lightTheme ? "light" : "dark"}
+      color-scheme={defaultValue ? "light" : "dark"}
     >
       <BrowserRouter>
         <NewsProvider>
-          <Header lightTheme={lightTheme} setLightTheme={setLightTheme} />
+          <Header defaultValue={defaultValue} toggle={toggle} />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route
