@@ -1,12 +1,12 @@
 .toggle {
-  &-checkbox {
+  &__checkbox {
     position: absolute;
     opacity: 0;
     width: 4rem;
     height: 2rem;
   }
 
-  &-label {
+  &__label {
     position: relative;
     display: flex;
     align-items: center;
@@ -18,7 +18,7 @@
     background-color: var(--background-pink);
   }
 
-  &-ball {
+  &__ball {
     position: absolute;
     right: 0.2rem;
     width: 20px;

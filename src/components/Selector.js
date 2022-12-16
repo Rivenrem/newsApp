@@ -8,7 +8,7 @@ export default function Selector({
 }) {
   return (
     <>
-      <label htmlFor="select-articles-per-page">{labelText}</label>
+      <label>{labelText}</label>
       <select
         className={styles.select}
         onChange={(event) => {

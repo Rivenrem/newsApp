@@ -9,7 +9,9 @@ import Favorites from "./pages/Favorites";
 import { useState } from "react";
 
 export default function App() {
-  const [lightTheme, setLightTheme] = useState(true);
+  const [lightTheme, setLightTheme] = useState(
+    window.matchMedia("(prefers-color-scheme: light)").matches
+  );
 
   return (
     <div
