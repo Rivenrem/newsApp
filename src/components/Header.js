@@ -82,14 +82,14 @@ export default function Header({ lightTheme, setLightTheme }) {
           <Selector
             labelText={"Articles per page"}
             onChange={onChangeArticlesPerPage}
-            lightTheme={articlesPerPage}
+            defaultValue={articlesPerPage}
             values={[6, 10, 20]}
           />
 
           <Selector
             labelText={"Sort by"}
             onChange={onChangeSortBy}
-            lightTheme={sortBy}
+            defaultValue={sortBy}
             values={["relevancy", "popularity", "published at"]}
           />
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./themeToggle.module.scss";
 
-export default function ThemeToggle({ defaultValue, toggle }) {
+export default function Toggle({ defaultValue, toggle }) {
   const [toggleValue, setToggleValue] = useState(defaultValue);
 
   useEffect(() => {

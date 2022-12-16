@@ -11,9 +11,7 @@ export default function Selector({
       <label>{labelText}</label>
       <select
         className={styles.select}
-        onChange={(event) => {
-          onChange(event);
-        }}
+        onChange={onChange}
         value={defaultValue}
       >
         {values.map((value, key) => (
