@@ -7,6 +7,7 @@
   }
 
   &__label {
+    cursor: pointer;
     position: relative;
     display: flex;
     align-items: center;
@@ -27,7 +28,7 @@
     border-radius: 2rem;
     transition: all 0.2s linear;
 
-    &--dark {
+    &--right {
       right: 2rem;
     }
   }

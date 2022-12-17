@@ -77,7 +77,7 @@ export default function Body() {
       <div className={styles["body__articles"]}>
         {news.articles.map((article, index) => (
           <Article
-            key={index}
+            key={article.title}
             article={article}
             articleIndex={index}
             pageNumber={number}

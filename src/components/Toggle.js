@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./themeToggle.module.scss";
+import styles from "./toggle.module.scss";
 
 export default function Toggle({ defaultValue, toggle }) {
   const [toggleValue, setToggleValue] = useState(defaultValue);
@@ -23,7 +23,7 @@ export default function Toggle({ defaultValue, toggle }) {
           className={
             toggleValue
               ? styles["toggle__ball"]
-              : styles["toggle__ball"] + " " + styles["toggle__ball--dark"]
+              : styles["toggle__ball"] + " " + styles["toggle__ball--right"]
           }
         ></div>
       </label>
