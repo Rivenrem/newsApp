@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
 import { useDebouncedCallback } from "use-debounce";
 import starImage from "images/star-svgrepo-com.svg";
-import ThemeToggle from "./ThemeToggle";
+import Toggle from "./Toggle";
 import Selector from "./Selector";
 
 const debounceDellay = 400;
@@ -55,8 +55,8 @@ export default function Header({ lightTheme, setLightTheme }) {
 
   return (
     <div className={styles.header}>
-      <div className={styles["header__themesetLightTheme"]}>
-        <ThemeToggle
+      <div>
+        <Toggle
           defaultValue={lightTheme}
           toggle={(value) => {
             setLightTheme(value);
@@ -71,7 +71,7 @@ export default function Header({ lightTheme, setLightTheme }) {
             debouncedInputHandler(event);
           }}
           className={styles["header__input"]}
-          type="textarea"
+          type="text"
           name="input"
           autoComplete="off"
           placeholder="Search..."

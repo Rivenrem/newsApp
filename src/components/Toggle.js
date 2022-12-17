@@ -21,7 +21,7 @@ export default function Toggle({ defaultValue, toggle }) {
       <label htmlFor="checkbox" className={styles["toggle__label"]}>
         <div
           className={
-            defaultValue
+            toggleValue
               ? styles["toggle__ball"]
               : styles["toggle__ball"] + " " + styles["toggle__ball--dark"]
           }

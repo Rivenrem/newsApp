@@ -6,19 +6,10 @@ import Page from "./pages/Page";
 import SingleArticle from "./pages/SingleArticle";
 import Index from "pages/Index";
 import Favorites from "./pages/Favorites";
-import { useEffect, useState } from "react";
+import useTheme from "customHooks/useTheme";
 
 export default function App() {
-  const [lightTheme, setLightTheme] = useState(
-    localStorage.getItem("lightTheme")
-      ? JSON.parse(localStorage.getItem("lightTheme"))
-      : window.matchMedia("(prefers-color-scheme: light)").matches
-  );
-
-  useEffect(() => {
-    localStorage.setItem("lightTheme", JSON.stringify(lightTheme));
-  }, [lightTheme]);
-
+  const { lightTheme, setLightTheme } = useTheme();
   return (
     <div
       className={styles.container}
