@@ -32,6 +32,7 @@
   }
   &__title {
     text-align: center;
+    color: var(--black);
   }
 
   &__content {
@@ -44,6 +45,7 @@
       padding: 1rem 0;
       text-align: center;
     }
+    color: var(--black);
   }
 
   &__footer {
@@ -53,10 +55,12 @@
     text-decoration: underline;
     font-size: large;
     font-weight: 600;
+    color: var(--black);
 
     &-author {
       max-width: 40%;
       overflow: hidden;
+      color: var(--black);
     }
   }
 }
