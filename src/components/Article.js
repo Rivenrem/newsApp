@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import starImage from "images/star-svgrepo-com.svg";
 import inactiveStarImage from "../images/star-inactive.com.svg";
 import { useState } from "react";
+import LazyImage from "./LazyImage";
 
 export default function Articles({ article, articleIndex, pageNumber }) {
   const date = article.publishedAt.slice(0, 10);
@@ -64,11 +65,7 @@ export default function Articles({ article, articleIndex, pageNumber }) {
       >
         <h2 className={styles["article__title"]}>{article.title}</h2>
         <div className={styles["article__content"]}>
-          <img
-            className={styles["article__img"]}
-            src={article.urlToImage}
-            alt="newsImg"
-          ></img>
+          <LazyImage src={article.urlToImage} alt="newsImg" />
         </div>
         <div className={styles["article__footer"]}>
           <p className={styles["article__footer-author"]}>{article.author}</p>
