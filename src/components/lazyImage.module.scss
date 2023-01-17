@@ -2,7 +2,6 @@
   display: grid;
   grid-template-areas: "content";
   align-items: center;
-  height: 20rem;
 
   &__spinner {
     grid-area: content;
